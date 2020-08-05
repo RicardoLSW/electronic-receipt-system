@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 import ATextarea from 'ant-design-vue/es/input/TextArea'
 import AInput from 'ant-design-vue/es/input/Input'
 // 动态切换组件
@@ -18,33 +17,31 @@ export default {
     AInput,
     ATextarea,
     List,
-    Edit
+    Edit,
   },
-  data () {
+  data() {
     return {
       currentComponet: 'List',
-      record: ''
+      record: '',
     }
   },
-  created () {
-
-  },
+  created() {},
   methods: {
-    handleEdit (record) {
+    handleEdit(record) {
       this.record = record || ''
       this.currentComponet = 'Edit'
       console.log(record)
     },
-    handleGoBack () {
+    handleGoBack() {
       this.record = ''
       this.currentComponet = 'List'
-    }
+    },
   },
   watch: {
-    '$route.path' () {
+    '$route.path'() {
       this.record = ''
       this.currentComponet = 'List'
-    }
-  }
+    },
+  },
 }
 </script>
