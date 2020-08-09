@@ -1,0 +1,21 @@
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.flex-row-space-around {
+  @extend .flex-row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-column-space-around {
+  @extend .flex-column;
+  justify-content: space-around;
+  align-items: center;
+}

@@ -20,6 +20,7 @@ import './core/lazy_use'
 import './permission' // permission control
 import './utils/filter' // global filter
 import './global.less'
+import './global.scss'
 
 Vue.config.productionTip = false
 
