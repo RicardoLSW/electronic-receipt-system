@@ -21,6 +21,12 @@ export const asyncRouterMap = [
         component: () => import('@/views/dashboard/WorkSpace'),
         meta: { title: '工作台', icon: bxAnaalyse },
       },
+      {
+        path: 'receipt-issued',
+        name: 'receiptIssued',
+        component: () => import('@/views/receiptIssu/ReceiptIssu'),
+        meta: { title: '收据开具', icon: bxAnaalyse },
+      },
     ],
   },
   {

@@ -65,3 +65,16 @@ export function removeLoadingAnimate(id = '', timeout = 1500) {
     document.body.removeChild(document.getElementById(id))
   }, timeout)
 }
+
+/**
+ * 判断对象是否为空
+ * @param {*} obj
+ */
+export function isEmpty(obj) {
+  return (
+    obj === undefined ||
+    obj === null ||
+    (typeof obj === 'string' && obj.trim().length === 0) ||
+    JSON.stringify(obj) === '{}'
+  )
+}
