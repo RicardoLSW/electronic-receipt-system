@@ -51,6 +51,13 @@ export const asyncRouterMap = [
         component: () => import('@/views/receiptPrintList/ReceiptPrintList'),
         meta: { title: '收据打印', icon: bxAnaalyse },
       },
+      {
+        path: 'receipt-print',
+        name: 'receiptPrint',
+        component: () => import('@/views/receiptPrint/ReceiptPrint'),
+        meta: { title: '收据打印详情' },
+        hidden: true,
+      },
     ],
   },
   {
