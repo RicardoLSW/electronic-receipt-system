@@ -27,6 +27,30 @@ export const asyncRouterMap = [
         component: () => import('@/views/receiptIssu/ReceiptIssu'),
         meta: { title: '收据开具', icon: bxAnaalyse },
       },
+      {
+        path: 'receipt-collection',
+        name: 'receiptCollection',
+        component: () => import('@/views/receiptPayment/ReceiptPayment'),
+        meta: { title: '收据收款', icon: bxAnaalyse },
+      },
+      {
+        path: 'receipt-audit',
+        name: 'receiptAudit',
+        component: () => import('@/views/receiptAudit/ReceiptAudit'),
+        meta: { title: '收据审核', icon: bxAnaalyse },
+      },
+      {
+        path: 'receipt-query',
+        name: 'receiptQuery',
+        component: () => import('@/views/receiptTheQuery/ReceiptTheQuery'),
+        meta: { title: '收据查询', icon: bxAnaalyse },
+      },
+      {
+        path: 'receipt-print-list',
+        name: 'receiptPrintList',
+        component: () => import('@/views/receiptPrintList/ReceiptPrintList'),
+        meta: { title: '收据打印', icon: bxAnaalyse },
+      },
     ],
   },
   {
