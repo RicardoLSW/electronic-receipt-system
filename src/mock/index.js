@@ -15,6 +15,7 @@ if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'tr
   require('./services/other')
   require('./services/tagCloud')
   require('./services/article')
+  require('./services/workSpace') // 引入工作台Mock
 
   Mock.setup({
     timeout: 800, // setter delay time

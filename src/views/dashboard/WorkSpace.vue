@@ -79,13 +79,6 @@
     <a-row :gutter="24">
       <a-col :span="12">
         <a-card title="收据统计" :bordered="false">
-          <div style="width: 200px; position: absolute; right: 20px; top: 12px;">
-            <a-select placeholder="" @change="handleChange" style="width: 100%;" default-value="PREPAID">
-              <a-select-option v-for="(item, index) in receiptTypeList" :value="item.receiptType" :key="index">{{
-                item.receiptTypeMeaning
-              }}</a-select-option>
-            </a-select>
-          </div>
           <div>
             <div class="flex-row-space-around">
               <div style="flex: 1;">
@@ -140,7 +133,7 @@
       </a-col>
       <a-col :span="12">
         <a-card title="收据类别占比" :bordered="false">
-          <a-radio-group default-value="LAST_SEVEN_DAY" style="margin-bottom: 16px;" @change="pieChange">
+          <a-radio-group default-value="LAST_SEVEN_DAY" style="margin-bottom: 16px;">
             <a-radio-button value="LAST_SEVEN_DAY">
               近七天
             </a-radio-button>
@@ -184,6 +177,7 @@
 import DataSet from '@antv/data-set'
 import { mapGetters } from 'vuex'
 import { baseMixin } from '@/store/app-mixin'
+import { getReceiptTotal, getReceiptTypePercentage, getReceiptMonthCount } from '@/api/api'
 
 export default {
   name: 'WorkSpace',
@@ -228,7 +222,6 @@ export default {
       lastWeekReceiptMoney: null, // 近七天收据总额
       todayCount: null, // 今日收据总数
       todayReceiptMoney: null, // 今日收据总额
-      receiptTypeList: [], // 收据类型
       thisMouthRcptCount: null, // 本月预付款收据总数
       thisMouthRcptMoney: null, // 本月预付款收据总额
       thisMouthOrderPct: null, // 本月预付款收据总数-百分比
@@ -243,6 +236,31 @@ export default {
   mounted() {
     const { userInfo } = this
     console.log(userInfo())
+    getReceiptTypePercentage().then((res) => {
+      this.receiptCategoryAccountedFor = res.result.finRcptTypeDetailVoList
+      this.receiptCategoryAccountedFor.forEach((e) => {
+        e.receiptPct = Number(e.receiptPct.split('%')[0])
+      })
+      this.receiptTotalMoney = res.result.receiptTotalMoney
+      this.initPieChart(this.receiptCategoryAccountedFor)
+    })
+    getReceiptTotal().then((res) => {
+      this.lastWeekCount = res.result.lastWeekCount
+      this.lastWeekReceiptMoney = res.result.lastWeekReceiptMoney
+      this.todayCount = res.result.todayCount
+      this.todayReceiptMoney = res.result.todayReceiptMoney
+      this.assigneeNum = res.result.assigneeNum
+    })
+    getReceiptMonthCount().then((res) => {
+      this.thisMouthRcptCount = res.result.finRcptMonthTotalVo.thisMouthRcptCount
+      this.thisMouthRcptMoney = res.result.finRcptMonthTotalVo.thisMouthRcptMoney
+      this.thisMouthOrderPct = res.result.finRcptMonthTotalVo.thisMouthOrderPct
+      this.thisMouthMoneyPct = res.result.finRcptMonthTotalVo.thisMouthMoneyPct
+      this.rcptMoneyFlag = res.result.finRcptMonthTotalVo.rcptMoneyFlag
+      this.rcptCountFlag = res.result.finRcptMonthTotalVo.rcptCountFlag
+      this.dataStatisticsData = res.result.finRcptMonthDetailVoList
+      this.initLineChart(this.dataStatisticsData)
+    })
   },
   methods: {
     ...mapGetters(['userInfo']),
@@ -336,23 +354,11 @@ export default {
               </tr>`
     },
     /**
-     * 切换饼图
-     * @param e
-     */
-    pieChange(e) {},
-    /**
      * 常用功能跳转
      * @param value
      */
     toPage(value) {
       this.$router.push({ name: value })
-    },
-    /**
-     * 切换折线图
-     * @param value
-     */
-    handleChange(value) {
-      this.receiptTypeMeaning = this.receiptTypeList.filter((e) => e.receiptType === value)[0].receiptTypeMeaning
     },
   },
 }
