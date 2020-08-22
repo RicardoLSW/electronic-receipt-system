@@ -18,3 +18,10 @@ Vue.filter('dayjs', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
 Vue.filter('moment', function (dataStr, pattern = 'YYYY-MM-DD HH:mm:ss') {
   return moment(dataStr).format(pattern)
 })
+
+/**
+ * 过滤器：日期格式化 xxxx年xx月xx日
+ */
+Vue.filter('localDay', function (dataStr, pattern = 'LL') {
+  return moment(dataStr).format(pattern)
+})
