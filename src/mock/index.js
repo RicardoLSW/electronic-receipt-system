@@ -11,10 +11,6 @@ if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'tr
   const Mock = require('mockjs2')
   require('./services/auth')
   require('./services/user')
-  require('./services/manage')
-  require('./services/other')
-  require('./services/tagCloud')
-  require('./services/article')
   require('./services/workSpace') // 引入工作台Mock
   require('./services/common') // 公共mock
   require('./services/receipt') // 收据相关mock

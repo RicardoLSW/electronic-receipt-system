@@ -1,7 +1,7 @@
 import Mock from 'mockjs2'
 import { builder, getBody } from '../util'
 
-const username = ['admin', 'super']
+const username = ['xiaoMing', 'xiaoHong']
 // 强硬要求 ant.design 相同密码
 // '21232f297a57a5a743894a0e4a801fc3',
 const password = ['8914de686ab28dc22f30d3d8e107ff6c', '21232f297a57a5a743894a0e4a801fc3'] // admin, ant.design
@@ -17,7 +17,7 @@ const login = (options) => {
     {
       id: Mock.mock('@guid'),
       name: Mock.mock('@name'),
-      username: 'admin',
+      username: body.username,
       password: '',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png',
       status: 1,
@@ -27,7 +27,7 @@ const login = (options) => {
       creatorId: 'admin',
       createTime: 1497160610259,
       deleted: 0,
-      roleId: 'admin',
+      roleId: body.username,
       lang: 'zh-CN',
       token: '4291d7da9005377ec9aec4a71ea837f',
     },

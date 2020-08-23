@@ -1,6 +1,6 @@
 import storage from 'store'
 import { login, getInfo, logout } from '@/api/login'
-import { ACCESS_TOKEN } from '@/store/mutation-types'
+import { ACCESS_TOKEN, USER_NAME } from '@/store/mutation-types'
 import { welcome } from '@/utils/util'
 
 const user = {
@@ -41,6 +41,7 @@ const user = {
             const result = response.result
             storage.set(ACCESS_TOKEN, result.token, 7 * 24 * 60 * 60 * 1000)
             commit('SET_TOKEN', result.token)
+            storage.set(USER_NAME, result.username)
             resolve()
           })
           .catch((error) => {
@@ -52,7 +53,7 @@ const user = {
     // 获取用户信息
     GetInfo({ commit }) {
       return new Promise((resolve, reject) => {
-        getInfo()
+        getInfo({ username: storage.get(USER_NAME) })
           .then((response) => {
             const result = response.result
 
@@ -101,6 +102,7 @@ const user = {
             commit('SET_TOKEN', '')
             commit('SET_ROLES', [])
             storage.remove(ACCESS_TOKEN)
+            storage.remove(USER_NAME)
           })
       })
     },

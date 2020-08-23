@@ -72,7 +72,7 @@
       </div>
     </a-card>
     <a-card title="收据列表" style="margin-top: 24px;" :bordered="false">
-      <a-alert :showIcon="true" style="margin-bottom: 16px;" v-action:tally>
+      <a-alert :showIcon="true" style="margin-bottom: 16px;">
         <template slot="message">
           <span style="margin-right: 12px;">
             已选择: <a style="font-weight: 600;">{{ this.selectedRows.length }}</a>

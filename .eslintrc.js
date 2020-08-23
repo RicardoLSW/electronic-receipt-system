@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/strongly-recommended',
+    'plugin:vue/essential',
     '@vue/standard',
     'plugin:prettier/recommended', // 这里使用prettier插件
   ],
