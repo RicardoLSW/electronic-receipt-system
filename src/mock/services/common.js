@@ -93,4 +93,4 @@ const finReceiptOrder = (options) => {
 }
 
 Mock.mock(/\/lookup-values/, 'get', lookupValue)
-Mock.mock(/\/fin-receipt-order/, 'get', finReceiptOrder)
+Mock.mock(/\/fin-receipt-list/, 'get', finReceiptOrder)

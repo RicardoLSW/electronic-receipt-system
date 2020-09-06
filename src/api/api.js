@@ -23,7 +23,7 @@ const getReceiptTypePercentage = (params) => getAction('/receipt-type-percentage
 const getReceiptMonthCount = (params) => getAction('/receipt-month-count', params) // 工作台-查询收据单本月统计数据
 const keyValueList = (params) => getAction('/lookup-values', params) // 查询值列表 FIN_PAY_RECEIPT_STATUS_CODE 单据状态 FIN_PAY_RECEIPT_TYPE 收据类型
 const getOrderNo = (params) => getAction('/order-no', params) // 获取收据编号
-const getFinReceiptOrder = (params) => getAction('/fin-receipt-order', params) // 查询收据接口
+const getFinReceiptOrder = (params) => getAction('/fin-receipt-list', params) // 查询收据接口
 const getFinReceiptOrderDetail = (params) => getAction('/fin-receipt-order', params) // 获取收据单详情
 
 export {
